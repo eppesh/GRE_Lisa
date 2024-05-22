@@ -1,13 +1,3 @@
-[submodule "src/competitor/wormhole/src"]
-	path = src/competitor/wormhole/src
-	url = https://github.com/wuxb45/wormhole.git
-[submodule "src/competitor/wormhole_u64/src"]
-	path = src/competitor/wormhole_u64/src
-	url = https://github.com/wuxb45/wormhole.git
-	branch = whu64
-[submodule "src/competitor/artsync/src"]
-	path = src/competitor/artsync/src
-	url = https://github.com/pohchaichon/ARTSynchronized.git
 [submodule "src/competitor/lipp/src"]
 	path = src/competitor/lipp/src
 	url = https://github.com/pohchaichon/lipp
@@ -30,6 +20,4 @@
 [submodule "src/competitor/finedex/src"]
 	path = src/competitor/finedex/src
 	url = https://github.com/pohchaichon/FINEdex.git
-[submodule "src/competitor/hot/src"]
-	path = src/competitor/hot/src
-	url = https://github.com/speedskater/hot.git
+
