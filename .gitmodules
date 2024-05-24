@@ -17,7 +17,3 @@
 [submodule "src/competitor/btreeolc/src"]
 	path = src/competitor/btreeolc/src
 	url = https://github.com/pohchaichon/index-microbench.git
-[submodule "src/competitor/finedex/src"]
-	path = src/competitor/finedex/src
-	url = https://github.com/pohchaichon/FINEdex.git
-
