@@ -7,7 +7,6 @@
 #include "./lippol/lippol.h"
 #include "pgm/pgm.h"
 #include "btree/btree.h"
-#include "finedex/finedex.h"
 #include "iostream"
 
 template <class KEY_TYPE, class PAYLOAD_TYPE>
@@ -45,10 +44,6 @@ indexInterface<KEY_TYPE, PAYLOAD_TYPE> *get_index(std::string index_type)
   else if (index_type == "lipp")
   {
     index = new LIPPInterface<KEY_TYPE, PAYLOAD_TYPE>;
-  }
-  else if (index_type == "finedex")
-  {
-    index = new finedexInterface<KEY_TYPE, PAYLOAD_TYPE>;
   }
   else
   {
