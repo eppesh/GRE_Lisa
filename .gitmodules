@@ -17,3 +17,7 @@
 [submodule "src/competitor/btreeolc/src"]
 	path = src/competitor/btreeolc/src
 	url = https://github.com/pohchaichon/index-microbench.git
+[submodule "src/competitor/lisa/src"]
+	path = src/competitor/lisa/src
+	url = https://github.com/eppesh/LISA.git
+	branch = lisa_for_gre
