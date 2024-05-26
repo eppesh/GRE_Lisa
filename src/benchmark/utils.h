@@ -193,6 +193,42 @@ long long load_text_data(T *&array, long long length, const std::string &file_pa
     return temp_keys.size();
 }
 
+template <class T>
+long long load_trace(T *&data, long long length, const std::string &file_path) {
+    if (file_path.find("umass") != std::string::npos ||
+        file_path.find(".csv") != std::string::npos) {
+        return load_text_data(data, length, file_path);
+    }
+    std::ifstream is(file_path.c_str(), std::ios::binary | std::ios::in);
+    if (!is.is_open()) {
+        std::cout << "[load_trace] Fail to open file: " << file_path
+                  << std::endl;
+        return 0;
+    }
+
+    is.seekg(0, is.end);
+    size_t file_size = is.tellg();
+    is.seekg(0, is.beg);
+    size_t keys_num = file_size / sizeof(T);
+
+    T key;
+    std::vector<T> temp_keys;
+    temp_keys.reserve(keys_num);
+    while (!is.read(reinterpret_cast<char *>(&key), sizeof(key)).eof()) {
+        temp_keys.push_back(key);
+    }
+    if (keys_num != temp_keys.size()) {
+        std::cerr << "[load_trace] Warning! keys_num=" << keys_num
+                  << ", temp_keys.size=" << temp_keys.size() << std::endl;
+    }
+    data = new T[temp_keys.size()];
+    for (int i = 0; i < temp_keys.size(); ++i) {
+        data[i] = temp_keys[i];
+    }
+    is.close();
+    return temp_keys.size();
+}
+
 template<class T>
 T *get_search_keys(T array[], int num_keys, int num_searches, size_t *seed = nullptr) {
     auto *keys = new T[num_searches];

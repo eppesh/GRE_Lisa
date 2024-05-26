@@ -40,8 +40,8 @@ class Benchmark {
     double scan_ratio = 0;
     size_t scan_num = 100;
     size_t operations_num;
-    long long table_size = -1;
-    size_t init_table_size;
+    long long table_size = -1;  // # of total keys(not unique for lisa datasets)
+    size_t init_table_size;     // # of keys used for bulkload
     double init_table_ratio;
     double del_table_ratio;
     size_t thread_num = 1;
@@ -60,7 +60,7 @@ class Benchmark {
     bool dataset_statistic;
     bool data_shift = false;
 
-    std::vector <KEY_TYPE> init_keys;
+    std::vector<KEY_TYPE> init_keys;  // bulkload keys(unqiue&sorted)
     KEY_TYPE *keys;
     std::pair <KEY_TYPE, PAYLOAD_TYPE> *init_key_values;
     std::vector <std::pair<Operation, KEY_TYPE>> operations;
@@ -110,21 +110,10 @@ public:
 
         if (table_size > 0) keys = new KEY_TYPE[table_size];
 
-
-        if (keys_file_type == "binary") {
-            table_size = load_binary_data(keys, table_size, keys_file_path);
-            if (table_size <= 0) {
-                COUT_THIS("Could not open key file, please check the path of key file.");
-                exit(0);
-            }
-        } else if (keys_file_type == "text") {
-            table_size = load_text_data(keys, table_size, keys_file_path);
-            if (table_size <= 0) {
-                COUT_THIS("Could not open key file, please check the path of key file.");
-                exit(0);
-            }
-        } else {
-            COUT_THIS("Could not open key file, please check the path of key file.");
+        table_size = load_trace(keys, table_size, keys_file_path);
+        if (table_size <= 0) {
+            COUT_THIS(
+                "Could not open key file, please check the path of key file.");
             exit(0);
         }
 
