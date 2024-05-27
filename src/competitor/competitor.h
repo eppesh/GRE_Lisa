@@ -5,6 +5,8 @@
 #include "./btreeolc/btreeolc.h"
 #include "./lipp/lipp.h"
 #include "./lippol/lippol.h"
+#include "./lisa/lisa.h"
+#include "./lisa/lisaol.h"
 #include "pgm/pgm.h"
 #include "btree/btree.h"
 #include "iostream"
@@ -44,6 +46,14 @@ indexInterface<KEY_TYPE, PAYLOAD_TYPE> *get_index(std::string index_type)
   else if (index_type == "lipp")
   {
     index = new LIPPInterface<KEY_TYPE, PAYLOAD_TYPE>;
+  }
+  else if (index_type == "lisa")
+  {
+    index = new LISAInterface<KEY_TYPE, PAYLOAD_TYPE>;
+  }
+  else if (index_type == "lisaol")
+  {
+    index = new LISAOLInterface<KEY_TYPE, PAYLOAD_TYPE>;
   }
   else
   {
